@@ -1,0 +1,21 @@
+{% if objects %}
+  <table id='result' class='display'>
+    <thead>
+      <tr>
+      {% for header in headers %}
+        <th>{{header}}</th>
+      {% endfor %}
+      </tr>
+    </thead>
+
+    <tbody>
+    {% for object in objects %} 
+      <tr>
+    {% for k, val in object.items() %}
+        <td>{{val}}</td>
+      {% endfor %}
+      </tr>
+    {% endfor %}        
+    </tbody>
+  </table>
+{% endif %}

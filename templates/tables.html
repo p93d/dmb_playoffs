@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% for table in tables %}
+<table border="3" </table>
+  {{titles[loop.index]}}
+  {{ table|safe }}
+
+</table>
+
+{% endfor %}
+
+{% endblock %}
