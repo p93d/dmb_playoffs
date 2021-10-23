@@ -4,10 +4,15 @@
 
 
 {% for table in tables %}
-<table border="3" </table>
-  {{titles[loop.index]}}
+<table border="1" </table>
+  <div id="textbox">
+  <p class="alignleft">{{home_titles[loop.index]}}</p>
+  <p class="alignright">{{away_titles[loop.index]}}</p>
+</div>
   {{ table|safe }}
-
+  <br>
+  <br>
+  <br>
 </table>
 
 {% endfor %}

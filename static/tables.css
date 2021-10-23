@@ -1,27 +1,113 @@
+
+/* general formats for all pages */
+body
+{
+background-color: #33313b;
+color: #e6f5ff;
+font-size: 12px;
+text-align: left;
+min-height: 100%;
+}
+
+.alignleft
+{
+    padding-left: 10px;
+    float: left;
+}
+
+.alignright
+{
+    padding-right: 10px;
+    float: right;
+}
+
+
+textarea
+{
+    background-color: #33313b;
+    color: #e6f5ff;
+    font-size: 10px;
+    text-align: left;
+}
+
+
+/* general formats for all tables */
 table
 {
-    font-size: 20px;
-    font-family: Georgia, serif;
+    font-size: 8px;
+    font-family: Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
 }
 
-
-td 
+/* general formats for all table rows */
+tr
 {
     text-align: center;
-    color: whitesmoke;
-    background-color: rgb(29, 19, 83);
-    border: 1px solid white; 
-    width: 10px;
+    border: 2px solid #33313b; 
 }
 
+/* general formats for all table headers */
 th
 {
+    background-color: #b34c69;
+    /* border: 1px solid #33313b;   */
     text-align: center;
-    background-color: rgb(2, 2, 66);
-    color: whitesmoke;
-    border: 1px solid white; 
+}
+
+/* formats for all table row, separated by
+ whether or not it's odd or even  */
+tr:nth-child(even) {background: #3c4f65}
+tr:nth-child(odd) {background: #204a7a}
+
+
+tr td:first-child,
+tr td:last-child {
     width: 100px;
 }
+
+tr td:nth-child(2),
+tr td:nth-child(6)
+{
+    font-style: italic;
+    font-size: 6px;
+}
+
+tr:nth-child(10n) {border: 6px solid #33313b; }
+
+
+
+
+
+/* Add a black background color to the top navigation */
+.topnav {
+    overflow: hidden;
+    color: #e6f5ff;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 12px;
+    color: #e6f5ff;
+  }
+  
+  /* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #b34c69;
+    color: white;
+  }
+
+
+
+
+
+
+
+
 /* #cssTable th
 {
     width: 25px;
