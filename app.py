@@ -37,6 +37,13 @@ week = 7
 
 app = Flask(__name__)
 
+
+@app.route("/home")
+def home():
+
+    return "Hello World"
+
+
 @app.route("/matchups")
 def matchup_info():
 
