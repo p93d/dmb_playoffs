@@ -4,7 +4,7 @@ body
 {
 background-color: #33313b;
 color: #e6f5ff;
-font-size: 40px;
+font-size: 30px;
 
 }
 
@@ -24,7 +24,7 @@ font-size: 40px;
 /* general formats for all tables */
 table
 {
-    font-size: 36px;
+    font-size: 28px;
     font-family: Helvetica, sans-serif;
     width: 100%;
     text-align: center;
@@ -41,7 +41,6 @@ tr
 th
 {
     background-color: #b34c69;
-    /* border: 1px solid #33313b;   */
     text-align: center;
 }
 
@@ -57,13 +56,13 @@ tr td:nth-child(2),
 tr td:nth-child(6)
 {
     font-style: italic;
-    font-size: 25px;
+    font-size: 16px;
 }
 
 tr:nth-child(10n)
 {
     border: 12px solid #33313b;
-    font-style: bold;
+    font-weight: bold;
 }
 
 
@@ -82,7 +81,7 @@ tr:nth-child(10n)
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 50px;
+    font-size: 40px;
     color: #e6f5ff;
   }
   
