@@ -102,6 +102,7 @@ def get_roster(league_id, team_id, week):
         except:
             roster['Actual'].append('--')
 
+    
 
     return roster, proj_pts, actual_pts, yet_to_play
 
@@ -129,8 +130,8 @@ def create_matchup(home_team, away_team, week):
         columns={
         'Home_Player':'Player',
         'Home_Projected': 'Proj',
-        'Home_Actual': 'Actual',
-        'Away_Actual': 'Actual',
+        'Home_Actual': 'Score',
+        'Away_Actual': 'Score',
         'Away_Projected': 'Proj',
         'Away_Player': 'Player',
         },
