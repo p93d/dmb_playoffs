@@ -4,7 +4,7 @@ body
 {
 background-color: #33313b;
 color: #e6f5ff;
-font-size: 30px;
+font-size: 36px;
 
 }
 
@@ -24,7 +24,7 @@ font-size: 30px;
 /* general formats for all tables */
 table
 {
-    font-size: 28px;
+    font-size: 27px;
     font-family: Helvetica, sans-serif;
     width: 100%;
     text-align: center;
