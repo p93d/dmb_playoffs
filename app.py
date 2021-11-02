@@ -11,13 +11,13 @@ format = seed: [team id, league id, team/manager name]
 """
 teams = {
     'NFC #1': ['1656657', '326370', 'Patrick Donovan'],
-    'NFC #4': ['1656806', '326370', 'Bigb2828'],
+    'NFC #4': ['1656833', '326370', 'DaveFernholz'],
     'NFC #2': ['1656714', '326382', 'Derek Hubbard'],
-    'NFC #3': ['1656673', '326382', 'jdavidson27'],
+    'NFC #3': ['1661811', '326382', 'BurnDatPuss'],
     'AFC #1': ['1656796', '326387', 'Tyler Stuntebeck'],
-    'AFC #4': ['1656758', '326387', 'TyThomas'],
-    'AFC #2': ['1666713', '326387', 'bmweber33'],
-    'AFC #3': ['1657685', '326387', 'SluggerLefty'],
+    'AFC #4': ['1666713', '326387', 'bmweber33'],
+#     'AFC #2': ['1666713', '326387', 'bmweber33'],
+#     'AFC #3': ['1657685', '326387', 'SluggerLefty'],
     
 }
 
@@ -26,11 +26,11 @@ matchups = [
     ['NFC #1', 'NFC #4'],
     ['NFC #2', 'NFC #3'],
     ['AFC #1', 'AFC #4'],
-    ['AFC #2', 'AFC #3'],
+#     ['AFC #2', 'AFC #3'],
 ]
 
 
-week = 8
+week = 9
 
 
 
