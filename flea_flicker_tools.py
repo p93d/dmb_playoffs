@@ -35,9 +35,12 @@ def get_roster(league_id, team_id, week):
             roster['Slot'].append(starter['position']['label'])
 
         # get player name
-        roster['Player'].append(
-            starter['leaguePlayer']['proPlayer']['nameFull']
-            )
+        try:
+            roster['Player'].append(
+                starter['leaguePlayer']['proPlayer']['nameFull']
+                )
+        except:
+            roster['Player'].append('--')
 
         # if available, get projected points
         try:
