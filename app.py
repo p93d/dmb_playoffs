@@ -10,27 +10,54 @@ import pandas as pd
 format = seed: [team id, league id, team/manager name]
 """
 teams = {
-    'NFC #1': ['1656657', '326370', 'Patrick Donovan'],
-    'NFC #4': ['1656833', '326370', 'DaveFernholz'],
-    'NFC #2': ['1656714', '326382', 'Derek Hubbard'],
-    'NFC #3': ['1661811', '326382', 'BurnDatPuss'],
-    'AFC #1': ['1656796', '326387', 'Tyler Stuntebeck'],
-    'AFC #4': ['1666713', '326387', 'bmweber33'],
-#     'AFC #2': ['1666713', '326387', 'bmweber33'],
-#     'AFC #3': ['1657685', '326387', 'SluggerLefty'],
-    
+'AFC #1': ['1656918', '326384', 'ParkerJackering'],
+'AFC #2': ['1656728', '326386', 'Kendall1'],
+'NFC #1': ['1656660', '326382', 'TCarl'],
+'AFC #3': ['1657203', '326385', 'HilaryBartsch'],
+'NFC #2': ['1662084', '326383', 'Rkuhl'],
+'AFC #4': ['1656713', '326387', 'NikWerner22'],
+'NFC #5': ['1656673', '326382', 'jdavidson27'],
+'NFC #3': ['1656765', '326375', 'TAmes'],
+'NFC #6': ['1666115', '326383', 'BrandonElliott'],
+'AFC #5': ['1656675', '326386', 'Jake Smith'],
+'AFC #6': ['1657013', '326384', 'RyanBudden34'],
+'NFC #7': ['1657682', '326375', 'Brett Hubbard'],
+'NFC #4': ['1656657', '326370', 'Patrick Donovan'],
+'NFC #8': ['1661105', '326375', 'ToddBresee'],
+'AFC #7': ['1657612', '326384', 'Mattcaley'],
+'NFC #9': ['1658135', '326370', 'timmer5500'],
+'NFC #10': ['1663035', '326375', 'EliHump'],
+'AFC #8': ['1656996', '326387', 'coleneedham00'],
+'AFC #9': ['1657314', '326385', 'Brian Cacic'],
+'AFC #10': ['1657373', '326387', 'Kevin McGee'],
+'AFC #11': ['1656848', '326384', 'marcchiefari'],
+'NFC #11': ['1656569', '326370', 'Chad Burkholder'],
+'NFC #12': ['1656774', '326382', 'Chad Olmstead'],
+'AFC #12': ['1656729', '326385', 'Hingtgen314'],
+'NFC #13': ['1656666', '326375', 'ChrisBausch'],
+'NFC #14': ['1656714', '326382', 'Derek Hubbard'],
+'NFC #15': ['1656658', '326375', 'MJahnke'],
+'AFC #13': ['1656701', '326386', 'Devon Calvert'],
+'NFC #16': ['1666038', '326375', 'KyleBredeson'],
+'AFC #14': ['1656958', '326385', 'NateGraney'],
+'AFC #15': ['1657029', '326385', 'KeithMoore'],
+'AFC #16': ['1658653', '326384', 'F Chet Pancakes'] 
 }
 
 
 matchups = [
-    ['NFC #1', 'NFC #4'],
-    ['NFC #2', 'NFC #3'],
-    ['AFC #1', 'AFC #4'],
-#     ['AFC #2', 'AFC #3'],
+    ['NFC #9',  'NFC #16'],
+    ['NFC #12', 'NFC #13'],
+    ['NFC #11', 'NFC #14'],
+    ['NFC #10', 'NFC #15'],
+    ['AFC #9',  'AFC #16'],
+    ['AFC #12', 'AFC #13'],
+    ['AFC #11', 'AFC #14'],
+    ['AFC #10', 'AFC #15'],
 ]
 
 
-week = 9
+week = 12
 
 
 
