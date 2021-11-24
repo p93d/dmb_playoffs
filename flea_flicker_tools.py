@@ -126,6 +126,27 @@ def create_matchup(home_team, away_team, week):
         'Away_Projected': away_roster['Projected'],
         'Away_Player': away_roster['Player'],
     }
+    
+    # Make sure rosters are the same size
+    if len(boxscore['Home_Player']) > len(boxscore['Away_Player']):
+
+        for i in range(len(boxscore['Home_Player']) - len(boxscore['Away_Player'])):
+
+            boxscore['Slot'].append('be')
+            boxscore['Away_Actual'].append('--')
+            boxscore['Away_Projected'].append('--')
+            boxscore['Away_Player'].append('--')
+
+    
+    if len(boxscore['Away_Player']) > len(boxscore['Home_Player']):
+
+        for i in range(len(boxscore['Away_Player']) - len(boxscore['Home_Player'])):
+
+            boxscore['Slot'].append('be')
+            boxscore['Home_Actual'].append('--')
+            boxscore['Home_Projected'].append('--')
+            boxscore['Home_Player'].append('--')
+    
 
     boxscore_df = pd.DataFrame.from_dict(boxscore)
 
