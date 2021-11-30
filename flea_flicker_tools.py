@@ -8,6 +8,68 @@ import numpy as np
 base_url = "https://www.fleaflicker.com/api/"
 
 
+def game_start_time(unix_timestamp):
+
+    # convert time stamp value to integer, and then subtract
+    # six hours (converts to Central time zone)
+    full_time = int(unix_timestamp) - (6 * 60 * 60 * 1000)
+
+    # trim off the milliseconds value since we don't need/care
+    minus_milli = int(str(full_time)[:-3])
+
+    # return in desired Day HH:MM format
+    return datetime.utcfromtimestamp(minus_milli).strftime('%a %I:%M')
+
+
+"""
+Returns the status of the game, and a 0/1
+value indicating whether the player has yet to play
+"""
+def game_status(game_json):
+
+    """
+    Determine if:
+        1. Player is on BYE
+        2. Game has ended
+        3. Game is in progress
+            a. current score
+        4. Game is in the future
+    """
+
+        # check for BYE
+    if game_json.get('isBye') == True:
+        return 'BYE', 0
+
+    # Smaller subset of game data
+    game_dict = game_json['game']
+
+
+
+    # Determine the score of the game
+    away_score = game_dict.get('awayScore', 0)
+    home_score = game_dict.get('homeScore', 0)
+
+    if game_json.get('participant') == 'HOME':
+        game_score = f'{home_score}-{away_score}'
+    else:
+        game_score = f'{away_score}-{home_score}'
+
+
+    # Check if the game is Complete, in-progress,
+    # or in the future
+    if game_dict.get('status') == 'FINAL_SCORE':
+        return f"{game_score}  Final", 0
+
+    elif game_dict.get('status') == 'IN_PROGRESS':
+        return f"{game_score}  Q{game_dict.get('segment')}", 0
+    else:
+        return game_start_time(
+            game_dict.get('startTimeEpochMilli')
+        ), 1
+
+
+
+
 def get_roster(league_id, team_id, week):
 
     url = base_url + f"FetchRoster?league_id={league_id}&team_id={team_id}&scoring_period={week}"
@@ -17,6 +79,7 @@ def get_roster(league_id, team_id, week):
     roster = {
         'Slot': [],
         'Player': [],
+        'Game_Status': [],
         'Projected': [],
         'Actual': []
     }
@@ -34,30 +97,47 @@ def get_roster(league_id, team_id, week):
         else:
             roster['Slot'].append(starter['position']['label'])
 
+
         # get player name
-        try:
+        if 'leaguePlayer' in starter:
             roster['Player'].append(
                 starter['leaguePlayer']['proPlayer']['nameFull']
                 )
-        except:
-            roster['Player'].append('--')
 
-        # if available, get projected points
-        try:
-            roster['Projected'].append(
-                round(starter['leaguePlayer']['viewingProjectedPoints']['value'], 2)
+
+            # if available, get projected points
+            if 'viewingProjectedPoints' in starter['leaguePlayer']:
+                roster['Projected'].append(
+                round(starter['leaguePlayer']['viewingProjectedPoints'].get('value'), 2)
+                )
+            else:
+                roster['Projected'].append('--')
+
+            # if available, get actual points
+            if 'viewingActualPoints' in starter['leaguePlayer']:
+                pts = starter['leaguePlayer']['viewingActualPoints'].get('value', 0)
+                roster['Actual'].append(
+                    round(pts, 2)
+                )
+            else:
+                roster['Actual'].append('--')
+
+            # Get game status and determine how many players
+            # are yet to play
+            status_of_game, ytp = game_status(
+                starter['leaguePlayer']['requestedGames'][0]
             )
-        except:
+            roster['Game_Status'].append(status_of_game)
+            yet_to_play+=ytp
+
+            
+        else:
+            roster['Player'].append('  ')
             roster['Projected'].append('--')
-
-        # if available, get actual points
-        try:
-            roster['Actual'].append(
-                round(starter['leaguePlayer']['viewingActualPoints']['value'], 2)
-            )
-        except:
             roster['Actual'].append('--')
-            yet_to_play+=1
+            roster['Game_Status'].append('  ')
+
+
 
     proj_pts = 0
     actual_pts = 0
@@ -85,27 +165,44 @@ def get_roster(league_id, team_id, week):
         roster['Slot'].append('be')
 
         # get player name
-        roster['Player'].append(
-            starter['leaguePlayer']['proPlayer']['nameFull']
-            )
+        if 'leaguePlayer' in starter:
+            roster['Player'].append(
+                starter['leaguePlayer']['proPlayer']['nameFull']
+                )
 
-        # if available, get projected points
-        try:
-            roster['Projected'].append(
-                round(starter['leaguePlayer']['viewingProjectedPoints']['value'], 2)
+
+            # if available, get projected points
+            if 'viewingProjectedPoints' in starter['leaguePlayer']:
+                roster['Projected'].append(
+                round(starter['leaguePlayer']['viewingProjectedPoints'].get('value'), 2)
+                )
+            else:
+                roster['Projected'].append('--')
+
+            # if available, get actual points
+            if 'viewingActualPoints' in starter['leaguePlayer']:
+                pts = starter['leaguePlayer']['viewingActualPoints'].get('value', 0)
+                roster['Actual'].append(
+                round(pts, 2)
+                )
+            else:
+                roster['Actual'].append('--')
+
+            # Get game status and determine how many players
+            # are yet to play
+            status_of_game, ytp = game_status(
+                starter['leaguePlayer']['requestedGames'][0]
             )
-        except:
+            roster['Game_Status'].append(status_of_game)
+
+            
+        else:
+            roster['Player'].append('  ')
             roster['Projected'].append('--')
-
-        # if available, get actual points
-        try:
-            roster['Actual'].append(
-                round(starter['leaguePlayer']['viewingActualPoints']['value'], 2)
-            )
-        except:
             roster['Actual'].append('--')
+            roster['Game_Status'].append('  ')
 
-    
+
 
     return roster, proj_pts, actual_pts, yet_to_play
 
