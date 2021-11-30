@@ -46,18 +46,18 @@ teams = {
 
 
 matchups = [
-    ['NFC #9',  'NFC #16'],
-    ['NFC #12', 'NFC #13'],
-    ['NFC #11', 'NFC #14'],
-    ['NFC #10', 'NFC #15'],
-    ['AFC #9',  'AFC #16'],
-    ['AFC #12', 'AFC #13'],
-    ['AFC #11', 'AFC #14'],
-    ['AFC #10', 'AFC #15'],
+    ['NFC #8',  'NFC #16'],
+    ['NFC #5', 'NFC #13'],
+    ['NFC #6', 'NFC #14'],
+    ['NFC #7', 'NFC #15'],
+    ['AFC #8',  'AFC #16'],
+    ['AFC #12', 'AFC #5'],
+    ['AFC #11', 'AFC #6'],
+    ['AFC #7', 'AFC #15'],
 ]
 
 
-week = 12
+week = 13
 
 
 
