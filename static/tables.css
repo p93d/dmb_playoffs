@@ -4,8 +4,7 @@ body
 {
 background-color: #33313b;
 color: #e6f5ff;
-font-size: 32px;
-
+font-size: 28px;
 }
 
 .alignleft
@@ -24,17 +23,20 @@ font-size: 32px;
 /* general formats for all tables */
 table
 {
-    font-size: 24px;
+    font-size: 30px;
     font-family: Helvetica, sans-serif;
-    width: 100%;
+    width: max 100%;
     text-align: center;
 }
 
 /* general formats for all table rows */
-tr
+td
 {
     text-align: center;
-    border: 3px solid #33313b; 
+    /* border: 3px solid #33313b;  */
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    word-wrap: break-word;
 }
 
 /* general formats for all table headers */
@@ -46,24 +48,51 @@ th
 
 /* formats for all table row, separated by
  whether or not it's odd or even  */
-tr:nth-child(even) {background: #3c4f65}
-tr:nth-child(odd) {background: #204a7a}
 
-
-
-
-tr td:nth-child(2),
-tr td:nth-child(6)
+tr:nth-child(4n)
 {
-    font-style: italic;
+    background: #3c4f65;
     font-size: 16px;
+    font-style: italic;
+    padding: 5pt;
+}
+tr:nth-child(4n-1) 
+{background: #3c4f65}
+
+
+tr:nth-child(4n-2)
+{
+    background: #204a7a;
+    font-size: 16px;
+    font-style: italic;
+    padding: 5pt;
+}
+tr:nth-child(4n-3) 
+{background: #204a7a}
+
+
+
+tr td:nth-child(1)
+{
+    text-align: left;
+    column-width: 500px;
 }
 
-tr:nth-child(10n)
+tr td:nth-child(5)
 {
-    border: 12px solid #33313b;
-    font-weight: bold;
+    text-align: right;
+    column-width: 500px;
 }
+
+tr:nth-child(19),
+tr:nth-child(20)
+{
+    font-weight: bold;
+    background: #33313b;
+}
+
+
+
 
 
 
@@ -91,26 +120,3 @@ tr:nth-child(10n)
     color: white;
   }
 
-
-
-
-
-
-
-
-/* #cssTable th
-{
-    width: 25px;
-    text-align: center; 
-    
-} */
-
-/* #cssTable td 
-{
-    width: 25px;
-    text-align: center; 
-    vertical-align: middle;
-    background-color: #300A24;
-
-
-} */
