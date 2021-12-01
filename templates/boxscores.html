@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for table in tables %}
+
+ <div id="textbox">
+  <p class="alignleft">{{home_titles[loop.index]}}</p>
+  <p class="alignright">{{away_titles[loop.index]}}</p>
+</div>
+<br>
+<table class="boxscore" >
+  {{ table|safe }}
+  <br>
+</table>
+
+{% endfor %}
+
+{% endblock %}
