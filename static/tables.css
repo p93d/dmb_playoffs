@@ -23,7 +23,7 @@ font-size: 28px;
 /* general formats for all tables */
 table
 {
-    font-size: 28px;
+    font-size: 32px;
     font-family: Helvetica, sans-serif;
     width: max 100%;
     text-align: center;
@@ -52,9 +52,9 @@ th
 tr:nth-child(4n)
 {
     background: #3c4f65;
-    font-size: 16px;
+    font-size: 20px;
     font-style: italic;
-    padding: 5pt;
+
 }
 tr:nth-child(4n-1) 
 {background: #3c4f65}
@@ -63,9 +63,9 @@ tr:nth-child(4n-1)
 tr:nth-child(4n-2)
 {
     background: #204a7a;
-    font-size: 16px;
+    font-size: 20px;
     font-style: italic;
-    padding: 5pt;
+    
 }
 tr:nth-child(4n-3) 
 {background: #204a7a}
