@@ -84,6 +84,11 @@ tr td:nth-child(5)
     column-width: 450px;
 }
 
+tr td:nth-child(3)
+{
+    font-size: 24px;
+}
+
 tr:nth-child(19),
 tr:nth-child(20)
 {
