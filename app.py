@@ -41,7 +41,7 @@ teams = {
 'NFC #16': ['1666038', '326375', 'KyleBredeson'],
 'AFC #14': ['1656958', '326385', 'NateGraney'],
 'AFC #15': ['1657029', '326385', 'KeithMoore'],
-'AFC #16': ['1658653', '326384', 'F Chet Pancakes'] 
+'AFC #16': ['1658653', '326384', 'F Chet Pancakes'],
 }
 
 
@@ -71,6 +71,7 @@ def home():
     return "Hello World"
 
 
+
 @app.route("/matchups")
 def matchup_info():
 
@@ -94,6 +95,35 @@ def matchup_info():
 
 
         # get weekly rosters for each team in each matchup
+        matchup_rosters = flea_flicker_tools.create_matchup(
+            home_team = [
+                home_team_id,
+                home_team_league_id,
+                home_team_name,
+                home_team_seed
+            ],
+            away_team = [
+                away_team_id,
+                away_team_league_id,
+                away_team_name,
+                away_team_seed
+            ],
+            week=week
+        )[0]
+
+        matchup_rosters.rename(
+        columns={
+        'Home_Player': home_team_name,
+        'Away_Player':away_team_name,
+        },
+        inplace=True
+        )
+
+        dfs.append(
+            matchup_rosters.to_html(index=False)
+        )
+
+        """
         dfs.append(flea_flicker_tools.create_matchup(
             home_team = [
                 home_team_id,
@@ -113,10 +143,10 @@ def matchup_info():
 
         home_titles.append(f"{home_team_name} ({home_team_seed})")
         away_titles.append(f"{away_team_name} ({away_team_seed})")
-        
+        """
 
-
-    return render_template('tables.html', tables=dfs, home_titles=home_titles, away_titles=away_titles)
+    # return render_template('boxscores.html', tables=dfs, home_titles=home_titles, away_titles=away_titles)
+    return render_template('boxscores.html', tables=dfs, home_titles=[], away_titles=[])
 
 
 @app.route("/scoreboard")
