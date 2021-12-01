@@ -277,6 +277,7 @@ def create_matchup(home_team, away_team, week):
     boxscore_df.rename(
         columns={
         'Home_Score': 'Score',
+        'Slot': ' ',
         'Away_Score': 'Score',
         },
         inplace=True
