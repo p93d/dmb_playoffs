@@ -7,7 +7,9 @@ from datetime import timedelta
 
 
 
+
 base_url = "https://www.fleaflicker.com/api/"
+
 
 
 def game_start_time(unix_timestamp):
@@ -129,7 +131,7 @@ def get_roster(league_id, team_id, week):
             status_of_game, ytp = game_status(
                 starter['leaguePlayer']['requestedGames'][0]
             )
-            roster['Game_Status'].append(status_of_game)
+            roster['Game_Status'].append(f"  {status_of_game}")
             yet_to_play+=ytp
 
             
@@ -160,6 +162,7 @@ def get_roster(league_id, team_id, week):
     roster['Player'].append('')
     roster['Projected'].append(proj_pts)
     roster['Actual'].append(actual_pts)
+    roster['Game_Status'].append('')
 
     # then get Bench info
     for starter in results['groups'][1]['slots']:
@@ -195,7 +198,7 @@ def get_roster(league_id, team_id, week):
             status_of_game, ytp = game_status(
                 starter['leaguePlayer']['requestedGames'][0]
             )
-            roster['Game_Status'].append(status_of_game)
+            roster['Game_Status'].append(f"  {status_of_game}")
 
             
         else:
@@ -209,6 +212,9 @@ def get_roster(league_id, team_id, week):
     return roster, proj_pts, actual_pts, yet_to_play
 
 
+
+
+
 # create the matchup table
 def create_matchup(home_team, away_team, week):
 
@@ -216,47 +222,62 @@ def create_matchup(home_team, away_team, week):
     home_roster, home_proj, home_act, home_yet = get_roster(home_team[1], home_team[0], week)
     away_roster, away_proj, away_act, away_yet = get_roster(away_team[1], away_team[0], week)
 
+    if len(home_roster['Player']) > len(away_roster['Player']):
+
+        for i in range(len(home_roster['Player']) - len(away_roster['Player'])):
+
+            away_roster['Slot'].append('be')
+            away_roster['Actual'].append('--')
+            away_roster['Projected'].append('--')
+            away_roster['Player'].append('--')
+            away_roster['Game_Status'].append('')
+
+
+    if len(away_roster['Player']) > len(home_roster['Player']):
+
+        for i in range(len(away_roster['Player']) - len(home_roster['Player'])):
+
+            home_roster['Slot'].append('be')
+            home_roster['Actual'].append('--')
+            home_roster['Projected'].append('--')
+            home_roster['Player'].append('--')
+            home_roster['Game_Status'].append('')
+
+
+
     boxscore = {
-        'Home_Player': home_roster['Player'],
-        'Home_Projected': home_roster['Projected'],
-        'Home_Actual': home_roster['Actual'],
-        'Slot': home_roster['Slot'],
-        'Away_Actual': away_roster['Actual'],
-        'Away_Projected': away_roster['Projected'],
-        'Away_Player': away_roster['Player'],
+        'Home_Player': [],
+        'Home_Score': [],
+        'Slot': [],
+        'Away_Score': [],
+        'Away_Player': [],
     }
-    
-    # Make sure rosters are the same size
-    if len(boxscore['Home_Player']) > len(boxscore['Away_Player']):
 
-        for i in range(len(boxscore['Home_Player']) - len(boxscore['Away_Player'])):
 
-            boxscore['Slot'].append('be')
-            boxscore['Away_Actual'].append('--')
-            boxscore['Away_Projected'].append('--')
-            boxscore['Away_Player'].append('--')
 
-    
-    if len(boxscore['Away_Player']) > len(boxscore['Home_Player']):
+    for i in range(len(home_roster['Player'])):
+        boxscore['Home_Player'].append(home_roster['Player'][i])
+        boxscore['Home_Player'].append(home_roster['Game_Status'][i])
 
-        for i in range(len(boxscore['Away_Player']) - len(boxscore['Home_Player'])):
+        boxscore['Home_Score'].append(home_roster['Actual'][i])
+        boxscore['Home_Score'].append(home_roster['Projected'][i])
 
-            boxscore['Slot'].append('be')
-            boxscore['Home_Actual'].append('--')
-            boxscore['Home_Projected'].append('--')
-            boxscore['Home_Player'].append('--')
-    
+        boxscore['Slot'].append(home_roster['Slot'][i])
+        boxscore['Slot'].append('')
+
+        boxscore['Away_Player'].append(away_roster['Player'][i])
+        boxscore['Away_Player'].append(away_roster['Game_Status'][i])
+
+        boxscore['Away_Score'].append(away_roster['Actual'][i])
+        boxscore['Away_Score'].append(away_roster['Projected'][i])
+
 
     boxscore_df = pd.DataFrame.from_dict(boxscore)
 
     boxscore_df.rename(
         columns={
-        'Home_Player':'Player',
-        'Home_Projected': 'Proj',
-        'Home_Actual': 'Score',
-        'Away_Actual': 'Score',
-        'Away_Projected': 'Proj',
-        'Away_Player': 'Player',
+        'Home_Score': 'Score',
+        'Away_Score': 'Score',
         },
         inplace=True
     )
@@ -264,21 +285,18 @@ def create_matchup(home_team, away_team, week):
     scoreboard_df = pd.DataFrame.from_dict(
         {'Manager': [
             f"{home_team[2]} ({home_team[3]})",
+            f"  Yet to Play: {home_yet}",
             f"{away_team[2]} ({away_team[3]})",
-        ],
-        'Yet to Play': [
-            home_yet,
-            away_yet
+            f"  Yet to Play: {away_yet}",
         ],
         'Score': [
             home_act,
-            away_act
-        ],
-        'Projected Total': [
             home_proj,
+            away_act,
             away_proj
         ]
         }
     )
 
-    return boxscore_df.to_html(index=False), scoreboard_df.to_html(index=False)
+    # return boxscore_df.to_html(index=False), scoreboard_df.to_html(index=False)
+    return boxscore_df, scoreboard_df.to_html(index=False)
