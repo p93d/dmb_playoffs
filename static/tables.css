@@ -23,7 +23,7 @@ font-size: 28px;
 /* general formats for all tables */
 table
 {
-    font-size: 30px;
+    font-size: 28px;
     font-family: Helvetica, sans-serif;
     width: max 100%;
     text-align: center;
@@ -75,13 +75,13 @@ tr:nth-child(4n-3)
 tr td:nth-child(1)
 {
     text-align: left;
-    column-width: 500px;
+    column-width: 450px;
 }
 
 tr td:nth-child(5)
 {
     text-align: right;
-    column-width: 500px;
+    column-width: 450px;
 }
 
 tr:nth-child(19),
