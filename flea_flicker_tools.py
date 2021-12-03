@@ -65,7 +65,13 @@ def game_status(game_json):
         return f"{game_score}  Final", 0
 
     elif game_dict.get('status') == 'IN_PROGRESS':
-        return f"{game_score}  Q{game_dict.get('segment')}", 0
+        
+        seconds_remaining = timedelta(
+            seconds=int(game_dict.get('segmentSecondsRemaining', 0))
+        )
+
+        return f"{game_score}  Q{game_dict.get('segment')} {str(seconds_remaining)[-5:]}", 0
+    
     else:
         return game_start_time(
             game_dict.get('startTimeEpochMilli')
