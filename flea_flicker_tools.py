@@ -164,7 +164,7 @@ def get_roster(league_id, team_id, week):
             actual_pts+=actual
 
 
-    roster['Slot'].append('TOTAL')
+    roster['Slot'].append('')
     roster['Player'].append('')
     roster['Projected'].append(proj_pts)
     roster['Actual'].append(actual_pts)
