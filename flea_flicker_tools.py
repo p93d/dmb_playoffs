@@ -184,8 +184,9 @@ def get_roster(league_id, team_id, week):
 
             # if available, get projected points
             if 'viewingProjectedPoints' in starter['leaguePlayer']:
+                pts = starter['leaguePlayer']['viewingProjectedPoints'].get('value', 0)
                 roster['Projected'].append(
-                round(starter['leaguePlayer']['viewingProjectedPoints'].get('value'), 2)
+                round(pts, 2)
                 )
             else:
                 roster['Projected'].append('--')
