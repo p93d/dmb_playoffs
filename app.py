@@ -10,7 +10,7 @@ import pandas as pd
 format = seed: [team id, league id, team/manager name]
 """
 teams = {
-'AFC #1': ['1656918', '326384', 'Dad Bod God'], # ParkerJackering
+'AFC #1': ['1656918', '326384', 'Parker Jackering'], # ParkerJackering
 'AFC #2': ['1656728', '326386', 'Kendall Camnitz'],
 'NFC #1': ['1656660', '326382', 'Tyler Carl'],
 'AFC #3': ['1657203', '326385', 'HilaryBartsch'],
@@ -46,14 +46,12 @@ teams = {
 
 
 matchups = [
-    ['NFC #13',  'NFC #1'],
-    ['NFC #7', 'NFC #3'],
-    ['AFC #12',  'AFC #1'],
-    ['AFC #2', 'AFC #6'],
+    ['NFC #3',  'NFC #1'],
+    ['AFC #2',  'AFC #1'],
 ]
 
 
-week = 15
+week = 16
 
 
 
