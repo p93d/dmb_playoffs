@@ -46,12 +46,12 @@ teams = {
 
 
 matchups = [
-    ['NFC #3',  'NFC #1'],
-    ['AFC #2',  'AFC #1'],
+    ['AFC #1',  'NFC #1'],
+    ['AFC #2',  'NFC #3'],
 ]
 
 
-week = 16
+week = 17
 
 
 
